@@ -20,7 +20,7 @@ max_weight = 10
 
 def print_dict(dict):
     for key in dict:
-        print(key, '->', dict[key])
+        print(key, '->', dict[key], 'kg')
     print()
 
 while True:
@@ -38,7 +38,10 @@ while True:
                 item = input('\nНет такой вещи. cancel - отмена. Попробуй ещё раз: ')
             if (item != 'cancel'):
                 if (sum(inventary_dict.values()) + items_dict.get(item) <= max_weight):
-                    inventary_dict[item] = items_dict[item]
+                    if (item in inventary_dict):
+                        inventary_dict[item] += items_dict.get(item)
+                    else: 
+                        inventary_dict[item] = items_dict.get(item)
                     print('Успешно!')
                 else:
                     print('Инвентарь переполнен.')
@@ -51,7 +54,9 @@ while True:
                 item = input('\nНет такой вещи. cancel - отмена. Попробуй ещё раз: ')
             if item != 'cancel':
                 if item in inventary_dict:
-                    del inventary_dict[item]
+                    inventary_dict[item] -= items_dict.get(item)
+                    if inventary_dict[item] == 0:
+                        del inventary_dict[item]
                     print('Успешно!')
                 else:
                     print('Предмета нет.')
@@ -59,7 +64,7 @@ while True:
         case '3':
             print('Текущий инвентарь: ')
             print_dict(inventary_dict)
-            print(f'Вес инвентаря: {sum(inventary_dict.values())}')
+            print(f'Вес инвентаря: {sum(inventary_dict.values())} kg')
             
         case '4':
             print('До свидания!')
