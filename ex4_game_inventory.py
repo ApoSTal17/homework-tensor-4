@@ -50,8 +50,11 @@ while True:
                     break
                 item = input('\nНет такой вещи. cancel - отмена. Попробуй ещё раз: ')
             if item != 'cancel':
-                del inventary_dict[item]
-                print('Успешно!')
+                if item in inventary_dict:
+                    del inventary_dict[item]
+                    print('Успешно!')
+                else:
+                    print('Предмета нет.')
 
         case '3':
             print('Текущий инвентарь: ')
