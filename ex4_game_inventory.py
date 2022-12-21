@@ -1,13 +1,15 @@
 
-items_dict = {'М4А4': 4.5,
-          'AK-47': 3.5,
-          'usp': 1.2,
-          'glock': 1.2,
-          'Galil': 1.3,
-          'P-250': 1.5,
-          'Deagle': 1.6,
-          'Negev': 10,
-          'P-2000': 2}
+items_dict = {
+    'М4А4': 4.5,
+    'AK-47': 3.5,
+    'usp': 1.2,
+    'glock': 1.2,
+    'Galil': 1.3,
+    'P-250': 1.5,
+    'Deagle': 1.6,
+    'Negev': 10,
+    'P-2000': 2
+}     
 inventary_dict = dict()
 command_info = '''Введи команду:
 0 - Вывести список доступных предметов на добавление/удаление
@@ -19,6 +21,7 @@ command_info = '''Введи команду:
 max_weight = 10
 
 def print_dict(dict):
+    """Функция печатает словарь в особом оформлении"""
     for key in dict:
         print(key, '->', dict[key], 'kg')
     print()
@@ -36,6 +39,7 @@ while True:
                 if item == 'cancel':
                     break
                 item = input('\nНет такой вещи. cancel - отмена. Попробуй ещё раз: ')
+
             if (item != 'cancel'):
                 if (sum(inventary_dict.values()) + items_dict.get(item) <= max_weight):
                     if (item in inventary_dict):
@@ -52,6 +56,7 @@ while True:
                 if item == 'cancel':
                     break
                 item = input('\nНет такой вещи. cancel - отмена. Попробуй ещё раз: ')
+                
             if item != 'cancel':
                 if item in inventary_dict:
                     inventary_dict[item] -= items_dict.get(item)
